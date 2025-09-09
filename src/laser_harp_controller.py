@@ -40,6 +40,12 @@ DEFAULT_COMBO_NOTES = ["Do (C)", "Re (D)", "Mi (E)", "Fa (F)", "Sol (G)"]
 
 # === Funzioni utilitarie ===
 def mostra_avviso(msg, widget=None, durata=1500):
+    '''
+    Mostra popup dopo aver modificato le note
+    :param msg: messaggio da visualizzare
+    :param widget:
+    :param durata: durata del popup
+    '''
     popup = tk.Toplevel()
     popup.overrideredirect(True)
     label = tk.Label(popup, text=msg, padx=10, pady=5, anchor="center")
@@ -62,6 +68,10 @@ root.title("Configurazione Arpa Laser MIDI")
 combos = []
 
 def invia_config(mostra_popup=True):
+    '''
+    Invia la nuova configurazione dell'arpa
+    :param mostra_popup: flag per mostrare o no il popup
+    '''
     for i, combo in enumerate(combos):
         nota_val = NOTES[combo.get()]
         outport.send(mido.Message("control_change", control=20+i, value=nota_val))
@@ -70,6 +80,9 @@ def invia_config(mostra_popup=True):
         mostra_avviso("Note applicate", widget=btn_invia)
 
 def imposta_scala():
+    '''
+    Imposta la scala corrente in base ai valori nelle combobox
+    '''
     tonica, scala_nome = root_note_combo.get(), scale_combo.get()
     if tonica not in NOTES or scala_nome not in SCALES:
         return
@@ -143,6 +156,11 @@ led_widgets = [led_canvas.create_oval(spacing*(i+1)-led_radius, canvas_height//2
                                      fill="gray", outline="") for i in range(5)]
 
 def aggiorna_led(index, acceso=True):
+    '''
+    Aggiorna il colore del cerchio per indicare l'accensione o lo spegnimento del corrispettivo led
+    :param index: indice del led/cerchio
+    :param acceso: indica se led acceso o spento
+    '''
     if 0 <= index < len(led_widgets):
         led_canvas.itemconfig(led_widgets[index], fill="green" if acceso else "gray")
 
@@ -152,7 +170,12 @@ ottava_frame.grid(row=0, column=1, padx=5, pady=5)
 ttk.Label(ottava_frame, text="Ottava").pack(pady=(0,5))
 ottava_label = tk.Label(ottava_frame, text="0", font=("Arial", 18, "bold"))
 ottava_label.pack()
-def aggiorna_ottava(val): ottava_label.config(text=f"{val}")
+def aggiorna_ottava(val):
+    '''
+    Aggiorna la label dell'ottava con il valore ricevuto
+    :param val: valore da inserire
+    '''
+    ottava_label.config(text=f"{val}")
 
 # --- Ultrasuoni ---
 ultra_frame = ttk.Frame(status_frame)
@@ -162,6 +185,11 @@ ultra_canvas = tk.Canvas(ultra_frame, width=60, height=canvas_height)
 ultra_canvas.pack()
 ultra_bar = ultra_canvas.create_rectangle(10, canvas_height, 50, canvas_height, fill="blue")
 def aggiorna_ultrasuoni(distanza, max_dist=100):
+    '''
+    Aggiorna il rettangolo per indicare il nuovo valore del sensore a ultrasuoni
+    :param distanza: distanza ricevuta
+    :param max_dist: distanza massima
+    '''
     altezza = max(10, min(canvas_height-10, canvas_height-10-(distanza/max_dist)*(canvas_height-20)))
     ultra_canvas.coords(ultra_bar, 10, altezza, 50, canvas_height-10)
 
@@ -171,6 +199,9 @@ led_frame.grid(sticky="n"); ottava_frame.grid(sticky="n"); ultra_frame.grid(stic
 
 # === Lettura MIDI ===
 def leggi_midi():
+    '''
+    Legge i messaggi midi ricevuti da arduino
+    '''
     for msg in inport.iter_pending():
         if msg.type == 'note_on':
             print(f"Nota ON ricevuta: {msg.note}")

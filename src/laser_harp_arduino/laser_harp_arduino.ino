@@ -30,7 +30,7 @@ int distanza = 0;
 unsigned long lastPing = 0;
 const unsigned long pingInterval = 50; 
 
-// Antirimbalzo
+// ===== Antirimbalzo pulsanti =====
 unsigned long lastDebounce = 0;
 const unsigned long debounceDelay = 200;
 
@@ -122,8 +122,8 @@ int calibraSingoloLaser(int index) {
 }
 
 // ===== MIDI =====
-void inviaControlChange(byte controller, byte value, byte channel = 0) {
-  midiEventPacket_t cc = {0x0B, (byte)(0xB0 | channel), controller, value};
+void inviaControlChange(byte controller, byte value) {
+  midiEventPacket_t cc = {0x0B, 0xB0, controller, value};
   MidiUSB.sendMIDI(cc);
   MidiUSB.flush();
 }
