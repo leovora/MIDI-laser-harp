@@ -1,38 +1,49 @@
 # MIDI Laser Harp
 
-Questo progetto è stato realizzato come parte dell’esame del corso **Laboratorio di Making** (Anno Accademico 2024/2025) presso il **Corso di Laurea Magistrale in Informatica, Università di Bologna**.  
+![Arduino](https://img.shields.io/badge/Arduino-00878A?logo=arduino&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python&logoColor=white)
+![Fusion 360](https://img.shields.io/badge/Autodesk%20Fusion%20360-FF6600?logo=autodesk&logoColor=white)
+![3D Printing](https://img.shields.io/badge/3D%20Printing-FDM-blueviolet)
 
-![](docs/images/copertina.png)  
+> **University Project** — Making Lab Course, A.Y. 2024/2025 <br>
+> Alma Mater Studiorum — Università di Bologna <br>
+> Author: [Leonardo Vorabbi](https://github.com/leovora)
 
-## Descrizione del progetto
-Il mio lavoro ha avuto come obiettivo la progettazione e realizzazione di un **controller MIDI a forma di arpa laser**, capace di interagire con software musicali (come Ableton, Logic o altri DAW) attraverso messaggi MIDI.  
+---
 
-Il funzionamento si basa sull’utilizzo di fasci laser proiettati su sensori LDR: l’interruzione di un raggio viene interpretata come l’attivazione o il rilascio di una nota (Note On/Off).  
-Oltre al nucleo principale, sono stati integrati:
-- **LED di feedback**, per fornire riscontro visivo all’utente;
-- **sensore a ultrasuoni**, per il controllo continuo di parametri MIDI (ad esempio effetti o modulazione);
-- **pulsanti per il cambio di ottava**, che estendono la gamma musicale dello strumento;
-- un **software di configurazione** in grado di ricevere e inviare messaggi *Control Change* per la rimappatura delle note e il monitoraggio dello stato del dispositivo.  
+This project was developed as part of the **Making Lab** course exam (Academic Year 2024/2025) at the **Master's Degree in Computer Science, University of Bologna**.
 
-## Modello CAD
-La struttura fisica dello strumento è stata progettata in **Autodesk Fusion 360** e realizzata tramite **stampa 3D FDM**. 
-![Modello esploso](docs/images/mockup_esploso.jpg)  
+![](docs/images/copertina.png)
 
-## Tecnologie utilizzate
-- **Arduino + MIDIUSB** per la gestione dei messaggi MIDI
-- **NewPing** per il sensore a ultrasuoni
-- **Autodesk Fusion 360** per la modellazione CAD
-- **Ultimaker Cura** e **Ultimaker3** per la stampa 3D
-- **Ableton Live** come DAW di riferimento per i test
+## Project Description
+The goal of my project was to design and build a **laser harp MIDI controller**, capable of interacting with music software (such as Ableton, Logic, or other DAWs) through MIDI messages.
 
+The system works by projecting laser beams onto LDR sensors: interrupting a beam is interpreted as triggering or releasing a note (Note On/Off).
 
-## Struttura della repository
-- `src/` → codice Arduino (per dispositivo) e Python (per software di configurazione)
-- `stl/` → modelli 3D in formato STL
-- `docs/` → immagini e documentazione aggiuntiva
+In addition to the core functionality, the following features were integrated:
+- **Feedback LEDs**, to provide visual feedback to the user;
+- **Ultrasonic sensor**, for continuous control of MIDI parameters (e.g. effects or modulation);
+- **Octave shift buttons**, to extend the musical range of the instrument;
+- a **configuration software** able to send and receive *Control Change* messages for note remapping and device status monitoring.
 
-## Autore
-Progetto realizzato da **Leonardo Vorabbi**  
-Università di Bologna – Corso di Laurea Magistrale in Informatica  
-Laboratorio di Making, A.A. 2024/2025
+## CAD Model
+The physical structure of the instrument was designed in **Autodesk Fusion 360** and built using **FDM 3D printing**.
 
+![Exploded model](docs/images/mockup_esploso.jpg)
+
+## Technologies Used
+- **Arduino + MIDIUSB** for MIDI message handling
+- **NewPing** for the ultrasonic sensor
+- **Autodesk Fusion 360** for CAD modeling
+- **Ultimaker Cura** and **Ultimaker 3** for 3D printing
+- **Ableton Live** as the reference DAW for testing
+
+## Repository Structure
+- `src/` → Arduino code (for the device) and Python code (for the configuration software)
+- `stl/` → 3D models in STL format
+- `docs/` → images and additional documentation
+
+## Author
+Project developed by **Leonardo Vorabbi**  
+University of Bologna – Master's Degree in Computer Science  
+Making Lab, A.Y. 2024/2025
